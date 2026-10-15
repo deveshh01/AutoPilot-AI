@@ -1,0 +1,3 @@
+browser-use>=0.13
+python-dotenv
+flask
