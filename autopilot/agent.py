@@ -30,8 +30,14 @@ async def run_task(task: str, headless: bool = True, max_steps: int = 25,
     provider = resolve_provider(provider)
     llm = get_llm(provider, model)
     browser = make_browser(headless)
+    local = provider == "ollama"
+    extra = dict(
+        llm_timeout=600, step_timeout=900,   # local models are slow
+        flash_mode=True, use_thinking=False,  # short outputs = faster, fewer format errors
+        max_actions_per_step=2, max_clickable_elements_length=8000,
+    ) if local else {}
     agent = Agent(task=task, llm=llm, browser=browser, use_judge=False,
-                  enable_planning=False, use_vision=supports_vision(provider))
+                  enable_planning=False, use_vision=supports_vision(provider), **extra)
     history = await agent.run(max_steps=max_steps)
     return RunResult(
         success=bool(history.is_successful()),

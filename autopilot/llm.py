@@ -43,7 +43,9 @@ def get_llm(provider: str | None = None, model: str | None = None):
         return ChatOllama(
             model=model or DEFAULT_OLLAMA_MODEL,
             host=os.getenv("OLLAMA_HOST", "http://localhost:11434"),
-            timeout=300,
+            timeout=600,
+            # Ollama defaults to a 2048-token context, which truncates the page + prompt.
+            ollama_options={"num_ctx": int(os.getenv("OLLAMA_NUM_CTX", "8192")), "temperature": 0.1},
         )
     key_var, default_model, cls = CLOUD[p]
     if not os.getenv(key_var):
