@@ -10,6 +10,9 @@ import sys
 
 from dotenv import load_dotenv
 
+import os
+
+os.environ.setdefault("ANONYMIZED_TELEMETRY", "false")
 load_dotenv()
 
 
