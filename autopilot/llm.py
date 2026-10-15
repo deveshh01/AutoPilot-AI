@@ -1,30 +1,51 @@
-"""LLM provider selection. Picks a provider from env vars or an explicit name."""
+"""LLM provider selection.
+
+Default is Ollama (local, free, no API key). If a cloud key is set it is used instead,
+unless LLM_PROVIDER says otherwise.
+"""
 import os
 
-from browser_use import ChatAnthropic, ChatGoogle, ChatOpenAI
+from browser_use import ChatAnthropic, ChatGoogle, ChatOllama, ChatOpenAI
 
-PROVIDERS = {
+DEFAULT_OLLAMA_MODEL = "qwen2.5:7b"
+
+CLOUD = {
     "openai": ("OPENAI_API_KEY", "gpt-4.1", ChatOpenAI),
     "anthropic": ("ANTHROPIC_API_KEY", "claude-sonnet-4-5", ChatAnthropic),
-    "google": ("GOOGLE_API_KEY", "gemini-2.5-flash", ChatGoogle),
+    "google": ("GOOGLE_API_KEY", "gemini-2.5-flash", ChatGoogle),  # free tier available
 }
+PROVIDERS = ["ollama", *CLOUD]
 
 
-def detect_provider() -> str | None:
-    for name, (key, _, _) in PROVIDERS.items():
+def detect_provider() -> str:
+    for name, (key, _, _) in CLOUD.items():
         if os.getenv(key):
             return name
-    return None
+    return "ollama"
+
+
+def supports_vision(provider: str) -> bool:
+    # Small local text models can't read screenshots.
+    return provider != "ollama" or bool(os.getenv("OLLAMA_VISION"))
+
+
+def resolve_provider(provider: str | None = None) -> str:
+    p = (provider or os.getenv("LLM_PROVIDER") or detect_provider()).lower()
+    if p not in PROVIDERS:
+        raise RuntimeError(f"Unknown provider '{p}'. Choose from: {', '.join(PROVIDERS)}")
+    return p
 
 
 def get_llm(provider: str | None = None, model: str | None = None):
-    provider = (provider or os.getenv("LLM_PROVIDER") or detect_provider() or "").lower()
-    if provider not in PROVIDERS:
-        raise RuntimeError(
-            "No LLM configured. Set one of OPENAI_API_KEY, ANTHROPIC_API_KEY or "
-            "GOOGLE_API_KEY in .env (see .env.example)."
+    p = resolve_provider(provider)
+    model = model or os.getenv("LLM_MODEL")
+    if p == "ollama":
+        return ChatOllama(
+            model=model or DEFAULT_OLLAMA_MODEL,
+            host=os.getenv("OLLAMA_HOST", "http://localhost:11434"),
+            timeout=300,
         )
-    key_var, default_model, cls = PROVIDERS[provider]
+    key_var, default_model, cls = CLOUD[p]
     if not os.getenv(key_var):
-        raise RuntimeError(f"{key_var} is not set for provider '{provider}'.")
-    return cls(model=model or os.getenv("LLM_MODEL") or default_model)
+        raise RuntimeError(f"{key_var} is not set for provider '{p}'.")
+    return cls(model=model or default_model)

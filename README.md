@@ -8,7 +8,10 @@ browser (open pages, click, fill forms, extract data) via the
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env   # add one API key (OpenAI / Anthropic / Google)
+# Free local model (no API key, no cost):
+#   1. Install Ollama from https://ollama.com/download
+#   2. ollama pull qwen2.5:7b      (~5 GB, one time)
+# Or use Google's free-tier key: cp .env.example .env and set GOOGLE_API_KEY
 ```
 If Chromium isn't installed, run `uvx playwright install chromium` or set `CHROME_PATH`.
 

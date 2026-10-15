@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 
 from browser_use import Agent, Browser
 
-from .llm import get_llm
+from .llm import get_llm, resolve_provider, supports_vision
 
 
 @dataclass
@@ -27,10 +27,11 @@ def make_browser(headless: bool = True) -> Browser:
 
 async def run_task(task: str, headless: bool = True, max_steps: int = 25,
                    provider: str | None = None, model: str | None = None) -> RunResult:
+    provider = resolve_provider(provider)
     llm = get_llm(provider, model)
     browser = make_browser(headless)
     agent = Agent(task=task, llm=llm, browser=browser, use_judge=False,
-                  enable_planning=False)
+                  enable_planning=False, use_vision=supports_vision(provider))
     history = await agent.run(max_steps=max_steps)
     return RunResult(
         success=bool(history.is_successful()),

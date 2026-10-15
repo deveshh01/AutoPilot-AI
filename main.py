@@ -18,7 +18,7 @@ def main() -> int:
     ap.add_argument("task", nargs="?", help="what the agent should do, in plain English")
     ap.add_argument("--headed", action="store_true", help="show the browser window")
     ap.add_argument("--max-steps", type=int, default=25)
-    ap.add_argument("--provider", choices=["openai", "anthropic", "google"])
+    ap.add_argument("--provider", choices=["ollama", "openai", "anthropic", "google"])
     ap.add_argument("--model")
     ap.add_argument("--doctor", action="store_true", help="self-test the browser setup")
     ap.add_argument("--serve", action="store_true", help="start the web UI")
@@ -39,7 +39,9 @@ def main() -> int:
     from autopilot.agent import run_task
     try:
         r = asyncio.run(run_task(a.task, not a.headed, a.max_steps, a.provider, a.model))
-    except RuntimeError as e:
+    except Exception as e:
+        if 'connect' in str(e).lower() or 'ollama' in str(e).lower():
+            e = f"{e}\nIs Ollama running? Start it and run: ollama pull qwen2.5:7b"
         print(f"Error: {e}", file=sys.stderr)
         return 1
     print(f"\n=== Result (success={r.success}, steps={r.steps}) ===\n{r.result}")
