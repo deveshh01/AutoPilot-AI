@@ -121,8 +121,14 @@ The whole session, first message to last, took about 16 minutes. Earlier in the 
 
 ## 3. Questions for me to answer myself
 
-- What did I get wrong first, and what made me notice?
+**1. What did I get wrong first, and what made me notice?**
 
-- Which of my numbers would I least like to defend, and why?
+Initially, I underestimated the actual session duration and assumed it would take 30–40 minutes, whereas the transcript showed it lasted only 16 minutes. I also realised that I should have verified the data definitions and assumptions instead of accepting every claim without questioning it.
 
-- What would I have asked the hiring manager if I could?
+**2. Which number would I least like to defend, and why?**
+
+The 53.8% referral rate is the hardest number to defend because it is based on only 13 applications, making the sample size too small to draw reliable conclusions. Additionally, some referral hires also had job-board records, which makes the classification questionable.
+
+**3. What would I have asked the hiring manager if I could?**
+
+I would have asked how Acme defines and records candidate sources, why some offers with decision dates are still marked as Pending, and whether the reported figures from the VP are backed by verified reports.
