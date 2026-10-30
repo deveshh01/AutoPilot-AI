@@ -123,7 +123,7 @@ The whole session, first message to last, took about 16 minutes. Earlier in the 
 
 **1. What did I get wrong first, and what made me notice?**
 
-Initially, I underestimated the actual session duration and assumed it would take 30–40 minutes, whereas the transcript showed it lasted only 16 minutes. I also realised that I should have verified the data definitions and assumptions instead of accepting every claim without questioning it.
+Initially, I accepted Claude's estimate that the analysis took 30–40 minutes without checking it, whereas the transcript showed the whole session lasted only about 16 minutes. I also realised that I should have verified the data definitions and assumptions instead of accepting every claim without questioning it.
 
 **2. Which number would I least like to defend, and why?**
 
