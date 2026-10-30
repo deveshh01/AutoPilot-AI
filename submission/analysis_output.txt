@@ -1,0 +1,108 @@
+
+## CLAIM 1: hires by source
+hired apps: 26
+  Agency       candidates  35 apps  35 hires  4 | share of hires 4/26 = 15.4% | app->hire 4/35 = 11.4%
+  LinkedIn     candidates  31 apps  31 hires  3 | share of hires 3/26 = 11.5% | app->hire 3/31 = 9.7%
+  Job Board    candidates 191 apps 236 hires  7 | share of hires 7/26 = 26.9% | app->hire 7/236 = 3.0%
+  Career Site  candidates  31 apps  31 hires  5 | share of hires 5/26 = 19.2% | app->hire 5/31 = 16.1%
+  Referral     candidates   8 apps  13 hires  7 | share of hires 7/26 = 26.9% | app->hire 7/13 = 53.8%
+  Campus       candidates   4 apps   4 hires  0 | share of hires 0/26 = 0.0% | app->hire 0/4 = 0.0%
+apps with Referred By: 27 candidate source of those: Counter({'Job Board': 17, 'Agency': 4, 'Referral': 3, 'Career Site': 3})
+hires with Referred By set: 3/26 = 11.5% Counter({'Agency': 1, 'Job Board': 1, 'Career Site': 1})
+hire share if Referred By overrides Source: {'Referral': '10/26 = 38.5%', 'Job Board': '6/26 = 23.1%', 'Agency': '3/26 = 11.5%', 'LinkedIn': '3/26 = 11.5%', 'Career Site': '4/26 = 15.4%'}
+Hired w/o accepted offer: 0 | accepted offer not Hired: 0
+share of ACCEPTED OFFERS by source: {'LinkedIn': '3/26 = 11.5%', 'Referral': '7/26 = 26.9%', 'Job Board': '7/26 = 26.9%', 'Career Site': '5/26 = 19.2%', 'Agency': '4/26 = 15.4%'}
+
+## CLAIM 2: offer acceptance
+Counter({'Accepted': 26, 'Pending': 5, 'Declined': 5})
+VP-style accepted/all offers: 26/36 = 72.2%
+accepted/decided (excl pending): 26/31 = 83.9%
+  pending: OFF-00021 offered 2026-05-02 decision None app stage Offer
+  pending: OFF-00020 offered 2026-08-04 decision 2026-08-15 app stage Offer
+  pending: OFF-00013 offered 2026-06-19 decision 2026-07-05 app stage Offer
+  pending: OFF-00007 offered 2026-08-07 decision 2026-08-20 app stage Offer
+  pending: OFF-00002 offered 2026-01-17 decision 2026-02-02 app stage Offer
+  declined: OFF-00012 Counter Offer base 2430000 expected 3500000
+  declined: OFF-00006 Counter Offer base 2850000 expected 1660000
+  declined: OFF-00019 Location base 2680000 expected 2350000
+  declined: OFF-00010 Counter Offer base 1230000 expected 410000
+  declined: OFF-00009 Compensation base 720000 expected 1520000
+offers below candidate expected CTC: 14/36 = 38.9% Counter({'Accepted': 10, 'Declined': 2, 'Pending': 2})
+offers outside opening salary band: 7/36 = 19.4% [('OFF-00003', 2258706, 'Accepted'), ('OFF-00004', 880000, 'Accepted'), ('OFF-00002', 440000, 'Pending'), ('OFF-00006', 2850000, 'Declined'), ('OFF-00016', 4180000, 'Accepted'), ('OFF-00001', 1093624, 'Accepted'), ('OFF-00011', 670000, 'Accepted')]
+days offer->decision: min 2 max 20 negative: 0
+by offer month: {'2025-10': Counter({'Accepted': 2}), '2025-11': Counter({'Accepted': 1}), '2025-12': Counter({'Accepted': 4, 'Declined': 1}), '2026-01': Counter({'Pending': 1, 'Accepted': 1}), '2026-02': Counter({'Accepted': 2}), '2026-03': Counter({'Accepted': 2}), '2026-04': Counter({'Declined': 2, 'Accepted': 1}), '2026-05': Counter({'Pending': 1, 'Accepted': 1, 'Declined': 1}), '2026-06': Counter({'Accepted': 6, 'Pending': 1, 'Declined': 1}), '2026-07': Counter({'Accepted': 6}), '2026-08': Counter({'Pending': 2})}
+
+## D4: data quality
+duplicate Application IDs: {'APP-00005': 2, 'APP-00007': 2, 'APP-00010': 2, 'APP-00001': 2}
+    APP-00005 Rejected 2026-01-03 CAND-00006 REQ-2025-009
+    APP-00007 Rejected 2026-03-18 CAND-00009 REQ-2026-017
+    APP-00010 Applied 2025-11-07 CAND-00011 REQ-2025-007
+    APP-00001 Offer 2026-01-02 CAND-00003 REQ-2025-016
+    APP-00007 Rejected 2026-08-02 CAND-00007 REQ-2025-019
+    APP-00001 Rejected 2026-05-31 CAND-00001 REQ-2026-011
+    APP-00005 Rejected 2025-08-30 CAND-00005 REQ-2026-017
+    APP-00010 Rejected 2026-02-24 CAND-00010 REQ-2025-001
+candidates sharing a phone: 12
+    CAND-00004 group 26 Referral 2026-04-14
+    CAND-00003 group 26 Job Board 2026-05-30
+    CAND-00001 group 104 Job Board 2025-04-08
+    CAND-00002 group 104 Referral 2026-06-07
+    CAND-00010 group 106 Job Board 2025-07-27
+    CAND-00009 group 106 Job Board 2025-04-28
+    CAND-00005 group 198 Job Board 2025-08-13
+    CAND-00006 group 198 Job Board 2025-03-11
+    CAND-00012 group 281 Job Board 2025-07-04
+    CAND-00011 group 281 Job Board 2025-10-26
+    CAND-00007 group 285 Job Board 2026-06-26
+    CAND-00008 group 285 Job Board 2025-04-13
+names repeated: 6
+same candidate+opening >1 application: 3
+date-order violations: {} rows: 0
+applied before candidate created: 90
+applied before opening opened: 3
+stage x status: Counter({('Rejected', 'Closed'): 200, ('Applied', 'Active'): 45, ('Screening', 'Active'): 32, ('Hired', 'Closed'): 26, ('Interview', 'Active'): 23, ('Withdrawn', 'Closed'): 14, ('Offer', 'Closed'): 5, ('Offer', 'Active'): 5})
+Closed w/o Closed On: 0 | Active with Closed On: 0
+Rejected w/o reason: 0 | reason on non-rejected: Counter({'Withdrawn': 14, 'Hired': 2, 'Interview': 1, 'Offer': 1})
+rejection reasons: Counter({'Skills Mismatch': 49, 'Culture Fit': 45, 'Better Candidate': 44, 'Comp Expectation': 26, 'Position Cancelled': 18, 'No Show': 18})
+Offered On on app but no Offer record: 0
+offer date mismatch app vs offer table: ['OFF-00003', 'OFF-00002', 'OFF-00001']
+Interview stage apps w/o interviews: 0
+Hired with no interview: 0
+interview outcome x has score: Counter({('Completed', True): 138, ('No Show', False): 7, ('Cancelled', False): 6, ('Rescheduled', False): 5, ('No Show', True): 3, ('Cancelled', True): 1})
+score range by recommendation: {'No Hire': (1.5, 3.7, 2.45), 'Strong No Hire': (1, 2.1, 1.46), 'Hire': (2.5, 4.8, 3.8), 'Strong Hire': (3.8, 5, 4.53)}
+score scale: [1, 1.1, 1.2, 1.3, 1.4] ... [4.6, 4.7, 4.8, 4.9, 5]
+interviewer roles: Counter({'Interviewer': 160})
+completed in future vs data snapshot 2026-08-27: 0
+max dates: applied 2026-08-27 offer 2026-08-07
+   req REQ-2025-005 Cancelled headcount 2 hired 1
+   req REQ-2025-015 Cancelled headcount 1 hired 3
+   req REQ-2025-024 Filled headcount 1 hired 2
+   req REQ-2025-007 Open headcount 1 hired 2
+   req REQ-2026-017 Filled headcount 1 hired 0
+   req REQ-2026-008 Filled headcount 1 hired 2
+   req REQ-2026-011 Filled headcount 2 hired 0
+department hired vs budget skipped (no actual headcount field)
+expected<current CTC: 4 | zero exp yrs w CTC>20L: 0
+years exp range: 0 17.1
+candidate notes: [('', 63), ('Referred internally. Available for a call after 6pm.', 38), ('Reached out again after an earlier rejection.', 37), ('Strong portfolio, thin on formal experience.', 35), ('Currently on a notice period; flexible on start date.', 35), ('Sourced from a conference list. Responsive over email.', 34), ('Applied to two openings; consolidated onto the more senior o', 33), ('Asked about remote policy in the first call.', 25)]
+notes say 'Referred internally' -> Source: Counter({'Job Board': 25, 'Agency': 5, 'LinkedIn': 5, 'Referral': 2, 'Career Site': 1})
+apps per candidate: Counter({1: 250, 2: 50})
+
+## SENSITIVITY
+job-board hire share 26.9% [95% CI 13.7-46.1] | referral hire share 26.9% [95% CI 13.7-46.1]
+job-board app->hire 3.0% [95% CI 1.4-6.0] | referral app->hire 53.8% [95% CI 29.1-76.8] | non-JB app->hire 16.7% [95% CI 10.9-24.6]
+acceptance all offers 72.2% [95% CI 56.0-84.2] | decided only 83.9% [95% CI 67.4-92.9]
+   OFF-00021 age days 117 has decision date False
+   OFF-00020 age days 23 has decision date True
+   OFF-00013 age days 69 has decision date True
+   OFF-00007 age days 20 has decision date True
+   OFF-00002 age days 222 has decision date True
+if the 3 pendings older than 30d are declines: 26/34 = 76.5% | if all 5 pendings decline: 26/36 = 72.2% | if all 5 accept: 31/36 = 86.1%
+hires among duplicated people: [('CAND-00010', 'Job Board'), ('CAND-00002', 'Referral'), ('CAND-00004', 'Referral')]
+apps from duplicated people: 24 Counter({'Job Board': 20, 'Referral': 4})
+job-board candidates with 2 apps: 45
+JB app->hire per CANDIDATE: 7/191 = 3.7% | referral per candidate: 7/8 = 87.5%
+offer>=expected {'Pending': 3, 'Accepted': 16, 'Declined': 3} decided accept 16/19 = 84.2%
+offer<expected {'Accepted': 10, 'Declined': 2, 'Pending': 2} decided accept 10/12 = 83.3%
+median days apply->hire by source: {'Referral': 44, 'Agency': 49, 'Job Board': 38, 'LinkedIn': 35, 'Career Site': 43}
+recruiter app counts (anonymised): [31, 96, 110, 113]
